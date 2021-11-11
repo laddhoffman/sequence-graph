@@ -25,7 +25,7 @@ Groupers {
   comment
 '/
 a -> b : Initiate interaction 'Comment at end of line
-b -> a : Respond
+b -> /' inline comment '/ a : Respond
 c -> a : Comment
 `;
 
