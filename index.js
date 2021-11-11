@@ -1,7 +1,6 @@
 'use strict';
 
-const Model = require('./lib/model'),
-    Parser = require('./lib/parser');
+const Model = require('./lib/model');
 
 function log(msg, data, indent = true) {
     let dataStr = '';
@@ -31,13 +30,7 @@ c -> a : Comment
 `;
 
 log(`input: ${input}`);
-/*
 const model = new Model();
 model.parse(input);
 log('parsed!');
 log('model:', model.toJSON());
-*/
-
-const parser = new Parser();
-parser.parse(input);
-log('result', parser.currentGroup.toJSON());
