@@ -14,7 +14,7 @@ const input = `
 z "Ungrouped actor"
 Groupers {
     a "The A"
-    b "B itself"
+    b "B itself {}"
     c Coolio
     d
     a -> b : Preliminary action within group
