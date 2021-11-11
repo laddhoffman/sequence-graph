@@ -1,2 +1,3 @@
-# static-sequence-graph
-Render a set of interactions as a sequence diagram or network graph, mostly using syntax common to graphviz and dot
+# sequence-graph
+Parse a set of interactions to render in various ways.
+Syntax is based on PlantUML and Graphviz dot/neato.

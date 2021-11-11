@@ -1,14 +1,7 @@
 'use strict';
 
-const Model = require('./lib/model');
-
-function log(msg, data, indent = true) {
-    let dataStr = '';
-    if (data) {
-        dataStr = ' ' + (indent ? JSON.stringify(data, null, 2) : JSON.stringify(data));
-    }
-    console.log(msg + dataStr);
-}
+const Model = require('./lib/model'),
+    log = require('./lib/log');
 
 const input = `
 z "Ungrouped actor"
