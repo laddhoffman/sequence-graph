@@ -1,6 +1,6 @@
 'use strict';
 
-const Model = require('./lib/model'),
+const Model = require('./lib/grouped'),
     log = require('./lib/log');
 
 const input = `
@@ -19,11 +19,10 @@ Groupers {
 '/
 a -> b : Initiate interaction 'Comment at end of line
 b -> /' inline comment '/ a : Respond
-c -> a : Comment
-`;
+c --> a : Comment
+a -> c`;
 
 log(`input: ${input}`);
 const model = new Model();
-model.parse(input);
-log('parsed!');
-log('model:', model.toJSON());
+const result = model.parse(input);
+log('parsed! result: ', result);
