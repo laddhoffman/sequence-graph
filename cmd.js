@@ -25,4 +25,5 @@ a -> c`;
 log(`input: ${input}`);
 const model = new Model();
 const result = model.parse(input);
-log('parsed! result: ', result);
+log('result: ', result);
+
