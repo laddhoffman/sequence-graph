@@ -53,10 +53,8 @@ window.MyPage = function() {
         this.errorThrown = false;
     };
     this.parseInput = () => {
-        console.log('parseInput...');
         const model = new Model();
         const input = this.getInputValue();
-        log('input: ' + input);
         try {
             const result = model.parse(input);
             this.setOutputValue(result);
