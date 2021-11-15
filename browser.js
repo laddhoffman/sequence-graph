@@ -17,24 +17,52 @@ window.MyPage = function() {
         };
         this.elements.output.innerText = 'hello';
         this.elements.input.addEventListener('input', () => this.parseInput());
-        this.elements.output.addEventListener('focus', (event) => this.elements.error.style.visibility = 'visible');
-        this.elements.output.addEventListener('blur', (event) => this.elements.error.style.visibility = 'hidden');
-
+        this.elements.output.addEventListener('focus', (event) => this.showError());
+        this.elements.output.addEventListener('blur', (event) => this.hideError());
+    };
+    this.getInputValue = () => {
+        return this.elements.input.value;
+    };
+    this.setOutputValue = (value) => {
+        this.elements.output.value = JSON.stringify(value.toJSON(), null, 2);
+    };
+    this.showError = () => {
+        this.elements.error.style.visibility = 'visible';
+        const error = this.getError();
+        if (error && !this.errorThrown) {
+            this.errorThrown = true;
+            throw new Error(error);
+        }
+    };
+    this.hideError = () => {
+        this.elements.error.style.visibility = 'hidden';
+    };
+    this.setError = (str) => {
+        this.elements.output.style.borderColor = 'red';
+        if (str !== this.getError()) {
+            this.elements.error.innerHTML = str;
+            this.errorThrown = false;
+        }
+    };
+    this.getError = () => {
+        return this.elements.error.innerHTML;
+    }
+    this.clearError = () => {
+        this.elements.output.style.borderColor = 'black';
+        this.elements.error.innerHTML = '';
+        this.errorThrown = false;
     };
     this.parseInput = () => {
         console.log('parseInput...');
         const model = new Model();
-        const input = this.elements.input.value;
+        const input = this.getInputValue();
         log('input: ' + input);
         try {
             const result = model.parse(input);
-            this.elements.output.value = JSON.stringify(result.toJSON(), null, 2);
-            this.elements.output.style.borderColor = 'black';
-            this.elements.error.innerHTML = '';
+            this.setOutputValue(result);
+            this.clearError();
         } catch (error) {
-            this.elements.output.style.borderColor = 'red';
-            this.elements.error.innerHTML = `${error.toString()}`;
-            throw error;
+            this.setError(error.toString());
         }
 
 
