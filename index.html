@@ -9,26 +9,45 @@
     <style>
         body {
             margin: 5%;
+            /* font-family: "Inconsolata, Monospace, Courier New"; */
         }
-        td {
-            /* border: 1px black solid; */
+        section.row {
+            display: flex;
+            flex-direction: row;
         }
-        textarea {
+        section > div {
+            flex: auto;
+        }
+        textarea, .errorMessage {
+            font-family: Inconsolata, "Courier New", Courier, monospace;
+        }
+        textarea.full {
             width: 100%;
             height: 40em;
         }
+        textarea ~ .errorMessage {
+            float: left;
+            visibility: hidden;
+            background: red;
+            color: white;
+            width: 100%;
+
+        }
+
+
+
     </style>
     </head>
     <body onLoad="myPage.onDocumentLoad();">
-        <div id="1">
-            <table width="100%">
-                <tr><td>
-                    <textarea name="input"></textarea>
-                </td><td>
-                    <textarea name="output"></textarea>
-                </td></tr>
-            </table>
-            <button name="parseInput" onClick="myPage.parseInput();">Parse Input</button>
+        <section class="row" id="1">
+            <div>
+                <textarea class="full" name="input"></textarea>
+            </div>
+            <div>
+                <textarea class="full" name="output"></textarea>
+                <br>
+                <div class="errorMessage"></div>
+            </div>
         </div>
     </body>
 </html>

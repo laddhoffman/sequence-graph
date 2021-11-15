@@ -21,6 +21,7 @@ window.MyPage = function() {
         const mainDiv = this.getMainDiv();
         const inputElement = mainDiv.querySelector('[name="input"]');
         const outputElement = mainDiv.querySelector('[name="output"]');
+        const errorElement = mainDiv.querySelector('[name="output"] ~ .errorMessage');
 
         const model = new Model();
         const input = inputElement.value;
@@ -29,8 +30,13 @@ window.MyPage = function() {
             const result = model.parse(input);
             outputElement.value = JSON.stringify(result.toJSON(), null, 2);
             outputElement.style.borderColor = 'black';
+            errorElement.innerHTML = '';
+            errorElement.style.visibility = 'hidden';
         } catch (error) {
             outputElement.style.borderColor = 'red';
+            errorElement.innerHTML = `${error.toString()}`;
+            errorElement.style.visibility = 'visible';
+            throw error;
         }
 
 
