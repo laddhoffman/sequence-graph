@@ -25,5 +25,7 @@ a -> c`;
 log(`input: ${input}`);
 const model = new Model();
 const result = model.parse(input);
-log('result: ', result);
+log('parsed: ', result);
 
+const res2 = new Model().fromJSON(result.toJSON());
+log('read from json:', res2);
